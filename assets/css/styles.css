@@ -1,0 +1,435 @@
+/* =========================================================
+   Brasil Açaí · hoja de estilos
+   Mobile-first: los estilos base son para móvil y las
+   media queries amplían hacia pantallas grandes.
+   ========================================================= */
+
+/* ---------- 1. Tokens de diseño (sacados de la web actual) ---------- */
+:root {
+  --color-purple: #59257c;        /* botones, títulos, enlaces */
+  --color-purple-dark: #46195f;   /* hover */
+  --color-lavender: #f2f0f8;      /* fondos suaves */
+  --color-lavender-dark: #e3ddf3; /* cabecera */
+  --color-text: #2b2433;
+  --color-text-soft: #5e5569;
+  --color-white: #ffffff;
+
+  --font-display: "Cormorant Infant", Georgia, serif;
+  --font-body: "Cabin", system-ui, sans-serif;
+  --font-ui: "DM Sans", system-ui, sans-serif;
+
+  --radius-pill: 30px;
+  --radius-card: 18px;
+  --shadow-soft: 0 11px 10px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 10px 30px rgba(89, 37, 124, 0.08);
+
+  --container: 1200px;
+  --gutter: 16px;
+  --header-h: 72px;
+}
+
+/* ---------- 2. Reset mínimo ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+ul { margin: 0; padding: 0; list-style: none; }
+a { color: var(--color-purple); }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); line-height: 1.1; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* ---------- 3. Utilidades ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--gutter);
+  padding: 8px 16px;
+  background: var(--color-purple);
+  color: var(--color-white);
+  border-radius: 0 0 8px 8px;
+  z-index: 100;
+}
+.skip-link:focus { top: 0; }
+
+/* ---------- 4. Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  transition: background-color .2s, color .2s, transform .2s;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--color-purple); outline-offset: 3px; }
+
+.btn--primary { background: var(--color-purple); color: var(--color-white); }
+.btn--primary:hover { background: var(--color-purple-dark); }
+
+.btn--light { background: var(--color-white); color: var(--color-purple); }
+.btn--light:hover { background: var(--color-lavender); }
+
+.btn--outline { background: transparent; color: var(--color-purple); border-color: var(--color-purple); }
+.btn--outline:hover { background: var(--color-purple); color: var(--color-white); }
+
+.btn--sm { padding: 10px 20px; font-size: 0.8125rem; }
+.btn--block { width: 100%; }
+
+/* ---------- 5. Cabecera ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-lavender-dark);
+  border-radius: 0 0 15px 15px;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-header__inner {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-header__logo img { width: 180px; height: auto; }
+
+/* Botón hamburguesa (solo móvil) */
+.nav-toggle {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  background: var(--color-purple);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--color-white);
+  border-radius: 2px;
+  transition: transform .2s, opacity .2s;
+}
+.nav-toggle__bar { position: relative; }
+.nav-toggle__bar::before,
+.nav-toggle__bar::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__bar::before { top: -6px; }
+.nav-toggle__bar::after  { top: 6px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::before { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::after  { transform: translateY(-6px) rotate(-45deg); }
+
+/* Menú desplegable en móvil */
+.site-nav {
+  position: absolute;
+  left: 0; right: 0;
+  top: 100%;
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px var(--gutter) 24px;
+  background: var(--color-lavender-dark);
+  border-radius: 0 0 15px 15px;
+  box-shadow: var(--shadow-soft);
+}
+.site-nav.is-open { display: flex; }
+
+.site-nav__list { display: flex; flex-direction: column; }
+.site-nav__list a {
+  display: block;
+  padding: 12px 0;
+  font-weight: 500;
+  color: var(--color-purple);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(89, 37, 124, 0.12);
+}
+.site-nav__list a:hover { color: var(--color-purple-dark); }
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  align-items: center;
+  padding-block: 64px;
+  color: var(--color-lavender);
+  background:
+    linear-gradient(180deg, rgba(43, 20, 60, 0.55) 0%, rgba(43, 20, 60, 0.75) 100%),
+    url("https://brasil-acai.com/wp-content/uploads/2025/10/imagen-footer-scaled.jpg") center / cover no-repeat;
+  text-align: center;
+}
+
+.hero__overline {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.hero__text {
+  max-width: 36rem;
+  margin: 20px auto 0;
+  font-size: 1.0625rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* ---------- 7. Secciones ---------- */
+.section { padding-block: 64px; }
+.section--soft { background: var(--color-lavender); }
+.section--purple { background: var(--color-purple); color: var(--color-lavender); }
+
+.section__head { max-width: 40rem; margin: 0 auto 40px; text-align: center; }
+
+.section__overline {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-purple);
+}
+.section__overline--light { color: var(--color-lavender-dark); }
+
+.section__title {
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-purple);
+}
+.section__title--light { color: var(--color-white); }
+
+.section__lead { margin: 16px 0 0; color: var(--color-text-soft); }
+.section__lead--light { color: var(--color-lavender); }
+
+/* ---------- 8. Bowls: tarjetas limpias ---------- */
+.bowl-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.bowl-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.bowl-card__media {
+  aspect-ratio: 1 / 1;
+  background: var(--color-lavender);
+}
+.bowl-card__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.bowl-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  flex: 1;
+}
+
+.bowl-card__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-purple);
+}
+
+.bowl-card__ingredients {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.bowl-card__note {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-soft);
+}
+
+/* ---------- 9. Franquicia ---------- */
+.franquicia { display: grid; gap: 40px; }
+.franquicia__text .btn { margin-top: 24px; }
+
+.franquicia__list {
+  display: grid;
+  gap: 16px;
+}
+.franquicia__list li {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-card);
+}
+.franquicia__list strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  color: var(--color-white);
+}
+
+/* ---------- 10. Nosotros ---------- */
+.nosotros { display: grid; gap: 32px; align-items: center; }
+.nosotros__media img { max-width: 420px; margin-inline: auto; }
+.nosotros__text p { color: var(--color-text-soft); }
+
+.check-list { display: grid; gap: 10px; margin-top: 16px; }
+.check-list li { padding-left: 28px; position: relative; }
+.check-list li::before {
+  content: "";
+  position: absolute; left: 0; top: 6px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--color-purple);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='black' d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.7 6.1-4.3 4.3a.75.75 0 0 1-1.06 0L4.3 8.37a.75.75 0 1 1 1.06-1.06l1.5 1.5 3.78-3.77a.75.75 0 1 1 1.06 1.06z'/></svg>") center / contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='black' d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.7 6.1-4.3 4.3a.75.75 0 0 1-1.06 0L4.3 8.37a.75.75 0 1 1 1.06-1.06l1.5 1.5 3.78-3.77a.75.75 0 1 1 1.06 1.06z'/></svg>") center / contain no-repeat;
+}
+
+/* ---------- 11. Tiendas ---------- */
+.store-grid { display: grid; gap: 16px; }
+
+.store-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+.store-card__name { font-size: 1.5rem; font-weight: 700; color: var(--color-purple); }
+.store-card__address { margin: 0; color: var(--color-text-soft); font-size: 0.9375rem; }
+.store-card__hours { margin: 0; font-size: 0.875rem; }
+.store-card__hours span { display: block; }
+.store-card__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
+
+/* ---------- 12. Pie ---------- */
+.site-footer {
+  background: var(--color-lavender-dark);
+  color: var(--color-text);
+  padding-top: 48px;
+}
+.site-footer__grid { display: grid; gap: 32px; }
+.site-footer__logo { width: 180px; margin-bottom: 8px; }
+.site-footer__title { font-size: 1.25rem; font-weight: 700; color: var(--color-purple); margin-bottom: 10px; }
+.site-footer__list { display: grid; gap: 6px; }
+.site-footer__list a { text-decoration: none; }
+.site-footer__list a:hover { text-decoration: underline; }
+.site-footer__bottom {
+  margin-top: 40px;
+  padding-block: 16px;
+  border-top: 1px solid rgba(89, 37, 124, 0.12);
+  font-size: 0.875rem;
+  color: var(--color-text-soft);
+}
+
+/* =========================================================
+   13. Pantallas medianas y grandes
+   ========================================================= */
+@media (min-width: 640px) {
+  .hero__actions { flex-direction: row; justify-content: center; }
+  .bowl-grid { grid-template-columns: repeat(2, 1fr); }
+  .store-grid { grid-template-columns: repeat(2, 1fr); }
+  .franquicia__list { grid-template-columns: repeat(2, 1fr); }
+  .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  :root { --gutter: 32px; --header-h: 82px; }
+
+  .nav-toggle { display: none; }
+
+  /* El menú vuelve a ser una barra horizontal */
+  .site-nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .site-nav__list { flex-direction: row; gap: 28px; }
+  .site-nav__list a { padding: 0; border: 0; font-size: 0.9375rem; }
+
+  .site-header__logo img { width: 240px; }
+
+  .hero { text-align: left; }
+  .hero__text { margin-inline: 0; }
+  .hero__actions { justify-content: flex-start; }
+  .hero__title { max-width: 14ch; }
+
+  .section { padding-block: 96px; }
+
+  .bowl-grid { grid-template-columns: repeat(3, 1fr); }
+  .store-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .franquicia { grid-template-columns: 1fr 1fr; align-items: center; }
+  .nosotros { grid-template-columns: 1fr 1fr; }
+  .site-footer__grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+}
+
+@media (min-width: 1280px) {
+  .bowl-grid { grid-template-columns: repeat(4, 1fr); }
+}

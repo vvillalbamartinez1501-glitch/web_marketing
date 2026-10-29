@@ -1,0 +1,14 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores y herramientas locales
+.vscode/
+.idea/
+.claude/
+
+# Credenciales de despliegue (nunca al repo)
+.env
+*.ftpconfig
+sftp.json

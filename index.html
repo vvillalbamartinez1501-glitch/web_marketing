@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brasil Açaí | El verdadero sabor de Brasil</title>
+  <meta name="description" content="Bowls de açaí brasileño, naturales y frescos. Pide en Uber Eats o descubre cómo abrir tu propia franquicia Brasil Açaí.">
+  <meta name="theme-color" content="#59257c">
+
+  <link rel="icon" href="https://brasil-acai.com/wp-content/uploads/2025/10/cropped-avatar-brasil-acai-transparent-32x32.png">
+
+  <!-- Tipografías de la marca: Cormorant Infant (títulos), Cabin (texto), DM Sans (botones) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&family=Cormorant+Infant:wght@600;700&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ========== CABECERA ========== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="#inicio">
+        <img src="https://brasil-acai.com/wp-content/uploads/2025/10/logo-brasil-acai-large-transparent.png" alt="Brasil Açaí" width="260" height="39">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-controls="nav-principal" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="visually-hidden">Abrir menú</span>
+      </button>
+
+      <nav class="site-nav" id="nav-principal" aria-label="Principal">
+        <ul class="site-nav__list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#bowls">Bowls</a></li>
+          <li><a href="#franquicia">Franquicia</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#tiendas">Tiendas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a class="btn btn--primary btn--sm" href="https://brasil-acai.com/login/">Acceso franquiciados</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="inicio">
+      <div class="container hero__content">
+        <p class="hero__overline">Brasil Açaí · El verdadero sabor de Brasil</p>
+        <h1 class="hero__title">Lo healthy nunca supo tan bien.</h1>
+        <p class="hero__text">Bowls de açaí con ingredientes frescos y naturales. Pídelo a domicilio o ven a cualquiera de nuestras tiendas.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#bowls">Ver los bowls</a>
+          <a class="btn btn--light" href="#franquicia">Convertirse en franquiciado</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BOWLS ========== -->
+    <section class="section section--soft" id="bowls">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__overline">Nuestros bowls</p>
+          <h2 class="section__title">Tú eliges el tamaño: mediano o grande</h2>
+          <p class="section__lead">Todos los pedidos se hacen a través de Uber Eats. Elige tu bowl y termina el pedido allí.</p>
+        </header>
+
+        <!-- Las tarjetas se generan desde assets/js/data/bowls.js -->
+        <ul class="bowl-grid" id="lista-bowls" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- ========== FRANQUICIA ========== -->
+    <section class="section section--purple" id="franquicia">
+      <div class="container franquicia">
+        <div class="franquicia__text">
+          <p class="section__overline section__overline--light">Franquicia</p>
+          <h2 class="section__title section__title--light">Abre tu propio Brasil Açaí</h2>
+          <p class="section__lead section__lead--light">Un modelo probado, con formación desde el primer día y proveedores centralizados. Te acompañamos en la apertura y en el día a día del local.</p>
+          <a class="btn btn--light" href="#contacto">Quiero información</a>
+        </div>
+        <ul class="franquicia__list">
+          <li><strong>Negocio rentable</strong><span>Alta demanda y buenos márgenes.</span></li>
+          <li><strong>Marca reconocida</strong><span>Diez tiendas entre Madrid y Valencia.</span></li>
+          <li><strong>Soporte completo</strong><span>Formación, operaciones, marketing y logística.</span></li>
+          <li><strong>Producto de calidad</strong><span>Açaí premium directamente desde Brasil.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== NOSOTROS ========== -->
+    <section class="section" id="nosotros">
+      <div class="container nosotros">
+        <div class="nosotros__media">
+          <img src="https://brasil-acai.com/wp-content/uploads/2026/02/bowl-inicio.png" alt="Bowl de açaí con plátano, fresa, mango y arándanos" loading="lazy" width="600" height="600">
+        </div>
+        <div class="nosotros__text">
+          <p class="section__overline">Sobre nosotros</p>
+          <h2 class="section__title">Pasión por el açaí, compromiso con la calidad</h2>
+          <p>Brasil Açaí nace del sueño de llevar el auténtico sabor del açaí amazónico a España, con productos naturales, nutritivos y sostenibles.</p>
+          <ul class="check-list">
+            <li>Cuidamos el proceso desde la recolección hasta el bowl.</li>
+            <li>Respetamos la selva y su biodiversidad.</li>
+            <li>Lo hacemos con pasión, transparencia y mucho cariño.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TIENDAS ========== -->
+    <section class="section section--soft" id="tiendas">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__overline">Nuestras tiendas</p>
+          <h2 class="section__title">Ven a vernos</h2>
+        </header>
+
+        <!-- Las tarjetas se generan desde assets/js/data/tiendas.js -->
+        <ul class="store-grid" id="lista-tiendas"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== PIE / CONTACTO ========== -->
+  <footer class="site-footer" id="contacto">
+    <div class="container site-footer__grid">
+      <div>
+        <img class="site-footer__logo" src="https://brasil-acai.com/wp-content/uploads/2025/10/logo-brasil-acai-large-transparent.png" alt="Brasil Açaí" width="200" height="30" loading="lazy">
+        <p>Tasty and healthy.</p>
+      </div>
+
+      <div>
+        <h2 class="site-footer__title">Contáctanos</h2>
+        <ul class="site-footer__list">
+          <li><a href="mailto:info@brasil-acai.com">info@brasil-acai.com</a></li>
+          <li><a href="tel:+34620383225">+34 620 383 225</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__title">Síguenos</h2>
+        <ul class="site-footer__list">
+          <li><a href="https://www.instagram.com/brasilacai_es/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/brasilacai" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__title">Legal</h2>
+        <ul class="site-footer__list">
+          <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
+          <li><a href="legal/privacidad.html">Política de privacidad</a></li>
+          <li><a href="legal/cookies.html">Política de cookies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container site-footer__bottom">
+      <p>© <span id="anio"></span> Brasil Açaí</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/data/bowls.js"></script>
+  <script src="assets/js/data/tiendas.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
